@@ -4,9 +4,10 @@ public class maze {
     // the last box in each maze is our destination
 
     public static void main(String[] args) {
-        System.out.println(countmaze(3,3));
-        path("",3,3);
-        System.out.println(pathRet("",3,3));
+//        System.out.println(countmaze(3,3));
+//        path("",3,3);
+//        System.out.println(pathRet("",3,3));
+        System.out.println(pathDiagonal("",3,3));
     }
     static int countmaze(int r , int c){
         if(r==1 || c==1){
@@ -33,6 +34,19 @@ public class maze {
         ArrayList<String> ans = new ArrayList<>();
         if(r>1) ans.addAll(pathRet(p+'D',r-1,c));
         if(c>1) ans.addAll(pathRet(p+'R',r,c-1));
+        return ans;
+    }
+    // new rule we can also move diagonal along with down and right
+    static ArrayList<String> pathDiagonal(String p, int c , int r){
+        if(c==1 && r==1){
+            ArrayList<String> ans = new ArrayList<>();
+            ans.add(p);
+            return ans;
+        }
+        ArrayList<String> ans = new ArrayList<>();
+        if(c>1&&r>1) ans.addAll(pathDiagonal(p+'D',r-1,c-1));
+        if(r>1) ans.addAll(pathDiagonal(p+'V',r-1,c));
+        if(c>1) ans.addAll(pathDiagonal(p+'H',r,c-1));
         return ans;
     }
 }

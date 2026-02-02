@@ -1,6 +1,8 @@
 import java.util.ArrayList;
-
 public class maze {
+    // in this maze we can only move down and right
+    // the last box in each maze is our destination
+
     public static void main(String[] args) {
         System.out.println(countmaze(3,3));
         path("",3,3);
